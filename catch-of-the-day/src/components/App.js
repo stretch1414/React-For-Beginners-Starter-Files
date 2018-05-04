@@ -4,12 +4,24 @@ import Order from './Order';
 import Inventory from './Inventory';
 import sampleFishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../base';
 
 class App extends React.Component {
     state = {
         fishes: {},
         order: {}
     };
+    // Lifecycle method
+    componentDidMount() {
+        this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
+            context: this,
+            state: 'fishes'
+        });
+    }
+    componentWillUnmount() {
+        // Destroy reference to prevent memory leaks
+        base.removeBinding(this.ref);
+    }
     addFish = fish => {
         // Take a copy of the existing state
         const fishes = { ...this.state.fishes };
