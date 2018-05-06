@@ -20,7 +20,6 @@ class App extends React.Component {
         const { params } = this.props.match;
         const localStorageRef = localStorage.getItem(params.storeId);
         if (localStorageRef) {
-            console.log('uhh');
             this.setState({ order: JSON.parse(localStorageRef) });
         }
         this.ref = base.syncState(`${params.storeId}/fishes`, {
@@ -108,6 +107,7 @@ class App extends React.Component {
                     updateFish={this.updateFish}
                     deleteFish={this.deleteFish}
                     loadSampleFishes={this.loadSampleFishes}
+                    storeId={this.props.match.params.storeId}
                 />
             </div>
         );
