@@ -13,10 +13,21 @@ class App extends React.Component {
     };
     // Lifecycle method
     componentDidMount() {
-        this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`, {
+        const { params } = this.props.match;
+        const localStorageRef = localStorage.getItem(params.storeid);
+        if (localStorageRef) {
+            this.setState({ order: JSON.parse(localStorageRef) });
+        }
+        this.ref = base.syncState(`${params.storeId}/fishes`, {
             context: this,
             state: 'fishes'
         });
+    }
+    componentDidUpdate() {
+        localStorage.setItem(
+            this.props.match.params.storeId,
+            JSON.stringify(this.state.order)
+        );
     }
     componentWillUnmount() {
         // Destroy reference to prevent memory leaks
