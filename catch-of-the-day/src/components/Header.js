@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; // Or use Typescript or Facebook's "Flow"
 
 // Stateless functional Component
 const Header = props => (
@@ -16,5 +17,9 @@ const Header = props => (
         </h3>
     </header>
 );
+
+Header.propTypes = {
+    tagline: PropTypes.string.isRequired
+};
 
 export default Header;

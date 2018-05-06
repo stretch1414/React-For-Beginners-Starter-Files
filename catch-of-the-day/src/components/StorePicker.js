@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getFunName } from '../helpers';
 
 class StorePicker extends React.Component {
@@ -6,6 +7,9 @@ class StorePicker extends React.Component {
         super();
         this.myInput = React.createRef();
     }
+    static propTypes = {
+        history: PropTypes.object
+    };
     goToStore = event => {
         // Stop form from submitting
         event.preventDefault();
