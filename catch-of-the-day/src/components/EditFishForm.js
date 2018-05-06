@@ -43,6 +43,7 @@ class EditFishForm extends React.Component {
                 <input
                     type="image"
                     name="image"
+                    alt={this.props.fish.image}
                     onChange={this.handleChange}
                     value={this.props.fish.image}
                 />
